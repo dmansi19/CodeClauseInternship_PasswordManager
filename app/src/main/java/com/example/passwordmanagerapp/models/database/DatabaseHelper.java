@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-      db.execSQL("CREATE TABLE PASSWORDS" + "(name TEXT PRIMARY KEY,login TEXT,password TEXT)");
+        db.execSQL("CREATE TABLE PASSWORDS" + "(name TEXT PRIMARY KEY,login TEXT,password TEXT)");
     }
 
     @Override
@@ -31,15 +31,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS PASSWORDS");
         onCreate(db);
     }
-    public boolean insertData(Password password){
+
+    public boolean insertData(Password password) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = password.getContentValues();
-        return db.insert("PASSWORDS",null,values) != -1;
+        return db.insert("PASSWORDS", null, values) != -1;
     }
-    public Boolean updateUserData(String name,String login,String password) {
+
+    public Boolean updateUserData(String name, String login, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("name",name);
+        values.put("name", name);
         values.put("login", login);
         values.put("password", password);
         Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS where name =?", new String[]{name});
@@ -52,25 +54,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } else {
                 return true;
             }
-        }else{
+        } else {
             return false;
         }
     }
+
     //
     //
-   //
+    //
     public Boolean deleteData(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS where name =? ", new String[]{name});
 
         if (cursor.getCount() > 0) {
-            long result = db.delete("PASSWORDS","name=? " , new String[]{name});
+            long result = db.delete("PASSWORDS", "name=? ", new String[]{name});
             if (result == -1) {
                 return false;
             } else {
                 return true;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -81,83 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS", null);
         return cursor;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*public boolean insert(Password password){
-        SQLiteDatabase db=getWritableDatabase();
-        ContentValues values=password.getContentValues();
-        return db.insert("PASSWORDS",null,values)==-1;
-    }*/
-
-   /* public Boolean insertData(String name,String login,String password){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put("name",name);
-        values.put("login",login);
-        values.put("password",password);
-        long result = db.insert("PASSWORDS",null,values);
-
-        if(result==-1){
-            return false;
-        }else{
-            return true;
-        }
-    }
-    public Boolean updateUserData(String name,String login,String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("name",name);
-        values.put("login", login);
-        values.put("password", password);
-        Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS where name =?", new String[]{name});
-
-        if (cursor.getCount() > 0) {
-            long result = db.update("PASSWORDS", values, "name=?", new String[]{name});
-
-            if (result == -1) {
-                return false;
-            } else {
-                return true;
-            }
-        }else{
-            return false;
-        }
-    }
-
-    public Boolean deleteData(String name,String login) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS where name =? & login =? ", new String[]{name});
-
-        if (cursor.getCount() > 0) {
-            long result = db.delete("PASSWORDS","name=? & login =?", new String[]{name});
-            if (result == -1) {
-                return false;
-            } else {
-                return true;
-            }
-        }else{
-            return false;
-        }
-    }
-
-
-    public Cursor getData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS", null);
-        return cursor;
-    }*/
-    }
+}
 
 
 
@@ -176,41 +103,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    /*public Boolean insertData(String name,String login,String password){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put("name",name);
-        values.put("login",login);
-        values.put("password",password);
-        long result = db.insert("PASSWORDS",null,values);
-
-        if(result==-1){
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    public Cursor getData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PASSWORDS", null);
-        return cursor;
-    }*/
 
 
 
-    /*public List<Password> getPasswordList(){
-        List<Password> passwordList=new ArrayList<>();
-        SQLiteDatabase db=getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * FROM PASSWORDS",null);
-        cursor.moveToFirst();
 
-        while(!cursor.isAfterLast()){
-            Password pwd=Password.fromCursor(cursor);
-            passwordList.add(pwd);
-            cursor.moveToNext();
-        }
-        return  passwordList;
-    }*/
+
+
+
+
+
+
+
+
+
+
+
 
 

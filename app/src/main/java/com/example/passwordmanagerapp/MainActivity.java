@@ -66,11 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*private void displaySavedPassword() {
-        DatabaseHelper dbh=new DatabaseHelper(this);
-        List<Password> passwordList=dbh.getPasswordList();
-        Log.e("PWD_LIST",passwordList.toString());
-    }*/
+
 
     private void clickListener(){
     btnGenerate.setOnClickListener(view ->{

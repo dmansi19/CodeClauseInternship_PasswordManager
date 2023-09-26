@@ -56,12 +56,6 @@ public class Password {
         return values;
     }
 
-    /*public ContentValues getContentValues(){
-        ContentValues values = new ContentValues();
-        values.put("name",name);
-        values.put("password",password);
-        values.put("login",login);
-        values.put("update_date",updateDate.getTime());
-        return values;*/
+
     }
-//}
+
